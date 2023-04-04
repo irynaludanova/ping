@@ -1,0 +1,381 @@
+.productGrid {
+  z-index: 1;
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(4, 1fr);
+  width: 150%;
+  top: -5vw;
+  left: -25%;
+}
+.item {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 5rem;
+  /* padding-top: calc(100% * (var(--rowHeight) / var(--colWidth))); */
+}
+.holder {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.image:nth-child(2n + 1) .holder {
+  top: 25%;
+}
+.image:nth-child(2n) .holder {
+  top: 75%;
+}
+.star {
+  width: var(--hexOverCol);
+
+  left: calc(var(--hexOffset) * -1);
+  height: 0;
+  padding-top: 5rem;
+  /* padding-top: calc(100% * (var(--hexHeight) / var(--colWidth))); */
+  margin-left: calc(var(--hexOffset) * -1);
+}
+.star::before {
+  pointer-events: none;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 5rem;
+  /* left: calc(var(--hexOffset) * -1); */
+  width: 10rem;
+  /* width: var(--hexOverCol); */
+  height: 0;
+  padding-top: 5rem;
+  /* padding-top: calc(100% * (var(--hexHeight) / var(--colWidth))); */
+  content: "";
+  background-color: #698f3f;
+  z-index: 1;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  -webkit-clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+}
+.star::after {
+  pointer-events: none;
+  position: absolute;
+  width: 10rem;
+  width: var(--legsOverCol);
+  height: 0;
+  padding-top: 5rem;
+  /* padding-top: var(--legsOverCol); */
+  top: 5rem;
+  /* top: calc(-1 * 100% * (var(--cos30) / var(--rowHeight))); */
+  left: 5rem;
+  /* left: calc(var(--legsOffset) * -1); */
+  content: "";
+  z-index: -2;
+  background-color: #ddd1c7;
+  clip-path: polygon(
+    13.3975% 13.3975%,
+    36.603% 0%,
+    50% 23.205%,
+    63.397% 0%,
+    86.6025% 13.3975%,
+    73.205% 36.603%,
+    100% 36.603%,
+    100% 63.397%,
+    73.205% 63.397%,
+    86.6025% 86.6025%,
+    63.397% 100%,
+    50% 76.795%,
+    36.603% 100%,
+    13.3975% 86.6025%,
+    26.795% 63.397%,
+    0% 63.397%,
+    0% 36.603%,
+    26.795% 36.603%
+  );
+  -webkit-clip-path: polygon(
+    13.3975% 13.3975%,
+    36.603% 0%,
+    50% 23.205%,
+    63.397% 0%,
+    86.6025% 13.3975%,
+    73.205% 36.603%,
+    100% 36.603%,
+    100% 63.397%,
+    73.205% 63.397%,
+    86.6025% 86.6025%,
+    63.397% 100%,
+    50% 76.795%,
+    36.603% 100%,
+    13.3975% 86.6025%,
+    26.795% 63.397%,
+    0% 63.397%,
+    0% 36.603%,
+    26.795% 36.603%
+  );
+}
+.image:hover {
+  z-index: 10;
+}
+.star:hover::before {
+  background-color: #f1615a;
+}
+.star:hover::after {
+  background-color: #e0f2e9;
+}
+.star:hover .image {
+  transform: rotate(0) scale(1.8) translateZ(0);
+  -webkit-filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.7));
+}
+.star:hover .title {
+  display: none;
+}
+.title {
+  font-size: 4.5vw;
+  position: absolute;
+  width: calc(var(--hexOverCol) / 1.8);
+  left: 41%;
+  bottom: 64%;
+  text-align: center;
+  transform: rotate(-30deg);
+  pointer-events: none;
+}
+#price {
+  font-size: 5.5vw;
+  position: absolute;
+  width: var(--hexOverCol);
+  left: -40%;
+  top: 5.5%;
+  text-align: center;
+  transform: rotate(-30deg);
+  pointer-events: none;
+}
+.image {
+  position: absolute;
+  width: 33%;
+  left: -22%;
+  top: 6.5%;
+  transform: rotate(-30deg) translateZ(0);
+  pointer-events: none;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+
+.image:nth-child(4n + 1) > .holder > .star > *,
+.image:nth-child(4n) > .holder > .star > * {
+  visibility: hidden;
+}
+
+.image:nth-child(4n + 1) > .holder > .star,
+.image:nth-child(4n) > .holder > .star {
+  pointer-events: none;
+}
+
+/* @media (min-width: 600px) {
+  .productGrid {
+    grid-template-columns: repeat(6, 1fr);
+    width: 125%;
+    top: 7vw;
+    left: -12.5%;
+    padding-bottom: 0vw;
+    margin-bottom: -55vw;
+  }
+  .title {
+    font-size: 2.85vw;
+    width: calc(var(--hexOverCol) / 1.6);
+    left: 35%;
+    bottom: 63%;
+  }
+  #price {
+    font-size: 3.5vw;
+  }
+  .image:nth-child(4n + 1) > .holder > .star > *,
+  .image:nth-child(4n) > .holder > .star > * {
+    visibility: visible;
+  }
+
+  .image:nth-child(4n + 1) > .holder > .star,
+  .image:nth-child(4n) > .holder > .star {
+    pointer-events: auto;
+  }
+
+  .image:nth-child(6n + 1) > .holder > .star > *,
+  .image:nth-child(6n) > .holder > .star > * {
+    visibility: hidden;
+  }
+
+  .image:nth-child(6n + 1) > .holder > .star,
+  .image:nth-child(6n) > .holder > .star {
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .productGrid {
+    grid-template-columns: repeat(8, 1fr);
+    width: 115%;
+    top: 10vw;
+    left: -7.5%;
+    padding-bottom: 0vw;
+    margin-bottom: -38vw;
+  }
+  #price {
+    font-size: 2.5vw;
+  }
+  .title {
+    font-size: 2.05vw;
+    width: calc(var(--hexOverCol) / 1.6);
+    left: 33%;
+    bottom: 63%;
+  }
+  .image:nth-child(6n + 1) > .holder > .star > *,
+  .image:nth-child(6n) > .holder > .star > * {
+    visibility: visible;
+  }
+
+  .image:nth-child(6n + 1) > .holder > .star,
+  .image:nth-child(6n) > .holder > .star {
+    pointer-events: auto;
+  }
+
+  .image:nth-child(8n + 1) > .holder > .star > *,
+  .image:nth-child(8n) > .holder > .star > * {
+    visibility: hidden;
+  }
+
+  .image:nth-child(8n + 1) > .holder > .star,
+  .image:nth-child(8n) > .holder > .star {
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .productGrid {
+    grid-template-columns: repeat(10, 1fr);
+    width: 112%;
+    top: 9vw;
+    left: -6%;
+    padding-bottom: 9vw;
+    margin-bottom: 0vw;
+  }
+  .title {
+    font-size: 15vw;
+    line-height: 16vw;
+  }
+  #price {
+    font-size: 2vw;
+  }
+  .title {
+    font-size: 1.64vw;
+    width: calc(var(--hexOverCol) / 1.6);
+    left: 33%;
+    bottom: 63%;
+  }
+  .image:nth-child(8n + 1) > .holder > .star > *,
+  .image:nth-child(8n) > .holder > .star > * {
+    visibility: visible;
+  }
+
+  .image:nth-child(8n + 1) > .holder > .star,
+  .image:nth-child(8n) > .holder > .star {
+    pointer-events: auto;
+  }
+
+  .image:nth-child(10n + 1) > .holder > .star > *,
+  .image:nth-child(10n) > .holder > .star > * {
+    visibility: hidden;
+  }
+
+  .image:nth-child(10n + 1) > .holder > .star,
+  .image:nth-child(10n) > .holder > .star {
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 1500px) {
+  .productGrid {
+    grid-template-columns: repeat(12, 1fr);
+    width: 109%;
+    top: 10vw;
+    left: -4.5%;
+    padding-bottom: 0vw;
+    margin-bottom: -24vw;
+  }
+  #price {
+    font-size: 1.9vw;
+  }
+  .title {
+    font-size: 1.3vw;
+    width: calc(var(--hexOverCol) / 1.6);
+    left: 33%;
+    bottom: 63%;
+  }
+  .image:nth-child(10n + 1) > .holder > .star > *,
+  .image:nth-child(10n) > .holder > .star > * {
+    visibility: visible;
+  }
+
+  .image:nth-child(10n + 1) > .holder > .star,
+  .image:nth-child(10n) > .holder > .star {
+    pointer-events: auto;
+  }
+
+  .image:nth-child(12n + 1) > .holder > .star > *,
+  .image:nth-child(12n) > .holder > .star > * {
+    visibility: hidden;
+  }
+
+  .image:nth-child(12n + 1) > .holder > .star,
+  .image:nth-child(12n) > .holder > .star {
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 1800px) {
+  .productGrid {
+    grid-template-columns: repeat(14, 1fr);
+    width: 108%;
+    top: 8vw;
+    left: -4%;
+    padding-bottom: 0vw;
+    margin-bottom: -20vw;
+  }
+  .title {
+    font-size: 12vw;
+    line-height: 13vw;
+  }
+  #price {
+    font-size: 1.7vw;
+  }
+  .title {
+    font-size: 1.1vw;
+    width: calc(var(--hexOverCol) / 1.6);
+    left: 33%;
+    bottom: 63%;
+  }
+  .image:nth-child(12n + 1) > .holder > .star > *,
+  .image:nth-child(12n) > .holder > .star > * {
+    visibility: visible;
+  }
+
+  .image:nth-child(12n + 1) > .holder > .star,
+  .image:nth-child(12n) > .holder > .star {
+    pointer-events: auto;
+  }
+
+  .image:nth-child(14n + 1) > .holder > .star > *,
+  .image:nth-child(14n) > .holder > .star > * {
+    visibility: hidden;
+  }
+
+  .image:nth-child(14n + 1) > .holder > .star,
+  .image:nth-child(14n) > .holder > .star {
+    pointer-events: none;
+  }
+
+  .image:nth-child(n + 113) {
+    display: none;
+  }
+} */

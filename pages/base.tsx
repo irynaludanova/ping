@@ -1,9 +1,13 @@
 import React from "react"
-import { CardList } from "@/components"
+import { CardList, Layout } from "@/components"
 import { productData } from "@/data/product.data"
 
 const Base = () => {
-  return <CardList items={productData} />
+  return (
+    <Layout title="Base">
+      <CardList items={productData} />
+    </Layout>
+  )
 }
 
 export default Base

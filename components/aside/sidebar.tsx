@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { sidebarData } from "@/data/sidebar.data"
 import { useRouter } from "next/router"
 import { useLocale } from "@/hooks"
@@ -7,6 +7,7 @@ import Link from "next/link"
 export const Sidebar = () => {
   const router = useRouter()
   const t = useLocale()
+  const locale = router.locale
 
   return (
     <div className="m-2 ">
@@ -15,9 +16,10 @@ export const Sidebar = () => {
           {sidebarData.map(({ to, title }) => (
             <li className="m-2" key={title}>
               <Link
+                locale={locale}
                 href={to}
-                className={`text-2xl flex p-2 bg-white rounded hover:text-white cursor-pointer hover:bg-indigo-400 ${
-                  router.asPath === to && "bg-indigo-400 text-white"
+                className={`text-2xl flex p-2  rounded hover:text-white cursor-pointer hover:bg-indigo-400 ${
+                  router.asPath == to && "bg-indigo-400 text-white"
                 }`}
               >
                 {t[title]}

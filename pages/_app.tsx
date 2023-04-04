@@ -1,6 +1,4 @@
-import "@/styles/globals.css"
-
-import { Layout } from "@/components"
+import "@/styles/globals.scss"
 
 type Props = {
   Component: any
@@ -8,9 +6,5 @@ type Props = {
 }
 
 export default function MyApp({ Component, pageProps }: Props) {
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  )
+  return <Component {...pageProps} />
 }

@@ -1,32 +1,40 @@
 import Head from "next/head"
-import Image from "next/image"
 import { Inter } from "next/font/google"
-
-import { useRouter } from "next/router"
-import { en } from "@/locales/en"
-import { ua } from "@/locales/ua"
-import { ru } from "@/locales/ru"
-import { CardList } from "@/components"
-
+import { useLocale } from "@/hooks"
+import { MainImage, Layout } from "@/components"
+import { productData } from "@/data/product.data"
+import { CarouselCard } from "@/components/carousel/carousel_card"
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
-  const router = useRouter()
-  let t
-  if (router.locale === "en") t = en
-  if (router.locale === "ua") t = ua
-  if (router.locale === "ru") t = ru
-
+  const t = useLocale()
   return (
     <>
-      <Head>
-        <title>Ping pong</title>
-        <meta name="description" content="table tennis" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <div className="flex justify-between w-full "></div>
+      <Layout title="Home">
+        <div className="flex flex-col justify-between w-full">
+          <MainImage />
+          <div className="p-8 my-12 glass">
+            <p className="text-2xl text-center ">{t.main_desc_1}</p>
+          </div>
+          <div className="flex flex-wrap flex-1">
+            {productData.map((item) =>
+              item.products.map(
+                (prod) =>
+                  prod.new_price && (
+                    <CarouselCard
+                      key={prod.item_id}
+                      price={prod.price}
+                      img={prod.img}
+                      name={prod.name}
+                      path={prod.path}
+                      new_price={prod.new_price}
+                    />
+                  )
+              )
+            )}
+          </div>
+        </div>
+      </Layout>
     </>
   )
 }

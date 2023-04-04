@@ -5,6 +5,10 @@ const nextConfig = {
     locales: ["en", "ru", "ua"],
     defaultLocale: "ru",
   },
+
+  fallbackLng: {
+    default: ["ru"],
+  },
 }
 
 module.exports = nextConfig
