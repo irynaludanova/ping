@@ -1,13 +1,20 @@
-import Head from "next/head"
-import { Inter } from "next/font/google"
+import { useContext } from "react"
 import { useLocale } from "@/hooks"
 import { MainImage, Layout } from "@/components"
-import { productData } from "@/data/product.data"
 import { CarouselCard } from "@/components/carousel/carousel_card"
-const inter = Inter({ subsets: ["latin"] })
+import Base from "@/models/Base"
+import db from "../utils/db"
+import { Store } from "../utils/Store"
+import { IProduct } from "@/types/intefaces"
 
-export default function Home() {
+type Props = {
+  products: IProduct[]
+}
+export default function Home({ products }: Props) {
+  const { state, dispatch } = useContext(Store)
+  const { cart } = state
   const t = useLocale()
+
   return (
     <>
       <Layout title="Home">
@@ -17,24 +24,31 @@ export default function Home() {
             <p className="text-2xl text-center ">{t.main_desc_1}</p>
           </div>
           <div className="flex flex-wrap flex-1">
-            {productData.map((item) =>
-              item.products.map(
-                (prod) =>
-                  prod.new_price && (
+            {products &&
+              products.map(
+                (item) =>
+                  item.new_price && (
                     <CarouselCard
-                      key={prod.item_id}
-                      price={prod.price}
-                      img={prod.img}
-                      name={prod.name}
-                      path={prod.path}
-                      new_price={prod.new_price}
+                      dispatch={dispatch}
+                      cart={cart}
+                      key={item.item_id}
+                      product={item}
                     />
                   )
-              )
-            )}
+              )}
           </div>
         </div>
       </Layout>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  await db.connect()
+  const products = await Base.find().lean()
+  return {
+    props: {
+      products: products.map(db.convertDocToObj),
+    },
+  }
 }

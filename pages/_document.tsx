@@ -2,23 +2,23 @@ import { Html, Head, Main, NextScript } from "next/document"
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="ru">
       <Head>
         <link
           rel="preload"
-          href="/fonts/IBMPlexSans-Bold.ttf"
+          href="/fonts/Ubuntu-Bold.ttf"
           as="font"
           crossOrigin="anonymous"
         ></link>
         <link
           rel="preload"
-          href="/fonts/IBMPlexSans-Regular.ttf"
+          href="/fonts/Ubuntu-Regular.ttf"
           as="font"
           crossOrigin="anonymous"
         ></link>
         <link
           rel="preload"
-          href="/fonts/IBMPlexSans-SemiBold.ttf"
+          href="/fonts/Ubuntu-Medium.ttf"
           as="font"
           crossOrigin="anonymous"
         ></link>

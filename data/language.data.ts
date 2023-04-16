@@ -1,5 +1,5 @@
 export const languageData = [
-  { id: 1, title: "Українська", locale: "ua" },
-  { id: 2, title: "Русский", locale: "ru" },
-  { id: 3, title: "English", locale: "en" },
+  { id: 1, title: "Укр", locale: "ua" },
+  { id: 2, title: "Рус", locale: "ru" },
+  { id: 3, title: "Eng", locale: "en" },
 ]

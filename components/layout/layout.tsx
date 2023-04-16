@@ -1,10 +1,13 @@
 import React from "react"
+import { ToastContainer } from "react-toastify"
 import { Header, ActionPanel, Aside, Footer } from "@/components"
 import Head from "next/head"
+
 type Props = {
   children?: React.ReactNode
   title: string | "" | undefined | string[]
 }
+
 export function Layout({ children, title }: Props) {
   return (
     <>
@@ -14,6 +17,7 @@ export function Layout({ children, title }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <ToastContainer position="bottom-center" limit={1} />
       <div className="flex flex-col items-stretch justify-center w-full min-h-screen bg-white">
         <Header />
         <ActionPanel />

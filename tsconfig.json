@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,7 +24,23 @@
     "**/*.ts",
     "**/*.tsx",
     "components/carousel/carousel.jsx",
-    "components/carousel/carousel.jsx"
+    "components/carousel/carousel.jsx",
+    "utils/db.js",
+    "utils/db.js",
+    "utils/Store.js",
+    "utils/Store.js",
+    "pages/order-history.jsx",
+    "pages/order-history.jsx",
+    "pages/payment.jsx",
+    "pages/payment.jsx",
+    "pages/shipping.jsx",
+    "pages/shipping.jsx",
+    "pages/placeorder.jsx",
+    "pages/placeorder.jsx",
+    "pages/profile.jsx",
+    "pages/profile.jsx",
+    "pages/login.jsx",
+    "pages/login.jsx"
   ],
   "exclude": ["node_modules"]
 }

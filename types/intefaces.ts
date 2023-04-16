@@ -6,6 +6,7 @@ export interface IProduct {
   name: string
   price: number
   new_price?: number
+  quantity?: number
   weight?: number
   shape?: string
   desc: string
@@ -16,6 +17,7 @@ export interface IProduct {
   width?: string
   shape_length?: number
   path: string
+  countInStock: number
 }
 
 export interface IItems {
